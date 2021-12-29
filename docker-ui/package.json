@@ -1,0 +1,56 @@
+{
+  "name": "docker-ui",
+  "version": "1.1.2",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electromon .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "build": {
+    "appId": "com.docker-ui.app",
+    "productName": "Docker UI",
+    "files": [
+      "app.js",
+      "./src/**/*",
+      "./assets/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "./assets/1024.png"
+    },
+    "nsis": {
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "perMachine": true
+    },
+    "linux": {
+      "target": "deb",
+      "maintainer": "Nikeweke",
+      "executableName": "Docker UI"
+    },
+    "directories": {
+      "buildResources": "./assets",
+      "output": "./dist"
+    }
+  },
+  "devDependencies": {
+    "electromon": "^1.0.10",
+    "electron": "^7.1.1",
+    "electron-builder": "^21.2.0"
+  },
+  "dependencies": {
+    "dockerode": "^3.0.2",
+    "get-folder-size": "^2.0.1",
+    "ncp": "^2.0.0",
+    "progress-stream": "^2.0.0",
+    "semantic-ui-css": "^2.4.1",
+    "v8-compile-cache": "^2.1.0"
+  }
+}

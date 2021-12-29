@@ -1,0 +1,130 @@
+@require '../../css/includes/theme-default'
+.animate-fast
+  animation-duration .2s
+.sidebar-panel
+  position absolute
+  left 43px
+  top 56px
+  bottom 0
+  z-index 200
+  width 0
+  overflow-y scroll
+  background main-light
+  color text
+  .item-list-unit:hover
+    .list-item-remove
+      display none !important
+.sidebar
+  position absolute
+  left 0
+  top 0
+  width 36px
+  z-index 100
+  bottom 0
+  background main-dark
+  box-shadow 0px 0px 3px 3px alpha(main, .1)
+  .item-list
+    padding-right 0
+.type-bookmarks
+  .bookmarks-panel
+    width 300px
+.type-history
+  .history-panel
+    width 300px
+.control-icon-wrap
+  padding 14px 0
+  text-align center
+  .control-icon
+    color text-dark
+    cursor pointer
+    &:hover
+      color text-light
+.sidebar-list
+  .pinned
+    color success
+    &:hover
+      color success
+.menu-control
+  width 28px
+  height 28px
+  border-radius 30px
+  color text
+  font-size 16px
+  text-align center
+  display inline-block
+  line-height 28px
+  cursor pointer
+  opacity .6
+  &:hover
+    opacity 1
+
+//btns
+.btns
+  background main-dark
+  border-color primary
+  // .ant-select-arrow
+  .open-about-icon
+    color text-dark
+    &:hover
+      color text-light
+  // .ant-btn
+  // .ant-select-selection
+  //   background transparent
+  //   color #aaa
+  //   border-color #555
+
+/*!
+ * Hover.css (http://ianlunn.github.io/Hover/)
+ * Version: 2.3.2
+ * Author: Ian Lunn @IanLunn
+ * Author URL: http://ianlunn.co.uk/
+ * Github: https://github.com/IanLunn/Hover
+
+ * Hover.css Copyright Ian Lunn 2017. Generated with Sass.
+ */
+/* Bob */
+@keyframes hvr-bob {
+  0% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+  50% {
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+  }
+  100% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}
+@-webkit-keyframes hvr-bob-float {
+  100% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}
+@keyframes hvr-bob-float {
+  100% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}
+.hvr-bob {
+  transform perspective(1px) translateZ(0)
+  box-shadow 0 0 1px rgba(0, 0, 0, 0)
+  animation-name hvr-bob-float, hvr-bob
+  animation-duration .3s, 1.5s
+  animation-delay 0s, .3s
+  animation-timing-function ease-out, ease-in-out
+  animation-iteration-count 1, infinite
+  animation-fill-mode forwards
+  animation-direction normal, alternate
+}
+.btns .upgrade-icon
+  color success
+.close-info-modal
+  cursor pointer
+  &:hover
+    color text-light
+.logo-filter
+  filter invert(80%)

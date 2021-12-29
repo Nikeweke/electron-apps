@@ -1,0 +1,48 @@
+{
+  "appId": "org.electerm.electerm",
+  "directories": {
+    "app": "work/app",
+    "output": "dist"
+  },
+  "asar": true,
+  "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+  "win": {
+    "target": ["tar.gz"],
+    "icon": "node_modules/@electerm/electerm-resource/build/icons.ico",
+    "publish": ["github"]
+  },
+  "mac": {
+    "category": "public.app-category.developer-tools",
+    "target": "dmg",
+    "icon": "node_modules/@electerm/electerm-resource/build/icons.icns",
+    "publish": ["github"]
+  },
+  "dmg": {
+    "contents": [
+      {
+        "x": 110,
+        "y": 190
+      },
+      {
+        "x": 440,
+        "y": 190,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ]
+  },
+  "linux": {
+    "category": "Development;System;TerminalEmulator",
+    "icon": "node_modules/@electerm/electerm-resource/res/imgs",
+    "target": [
+      "rpm",
+      "deb",
+      "tar.gz",
+      "snap"
+    ],
+    "publish": ["github"]
+  },
+  "snap": {
+    "publish": ["github", "snapStore"]
+  }
+}

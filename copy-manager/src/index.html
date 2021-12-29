@@ -1,0 +1,134 @@
+<html>
+<head>
+  <link rel="stylesheet" href="../node_modules/semantic-ui-css/semantic.min.css">
+  <link rel="stylesheet" href="../assets/styles/styles.css">
+  <link rel="stylesheet" href="../assets/styles/bootstrap-grid.min.css">
+
+  <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+
+  <header id="titlebar">
+      <div id="drag-region">
+        <div id="window-title">
+          <span>Copy manager</span>
+        </div>
+
+        <div id="window-controls">
+          <div class="button" id="info-button">
+            <span>&#x3f;</span>
+          </div>
+          <div class="button" id="min-button">
+            <span>&#9866;</span>
+          </div>
+          <div class="button" id="max-button">
+            <span>&#10064;</span>
+          </div>
+          <div class="button" id="restore-button">
+            <span>&#10070;</span>
+          </div>
+          <div class="button" id="close-button">
+            <span>&#10005;</span>
+          </div>
+        </div>
+      </div>
+  </header>
+  
+  <div id="main">
+
+    <div class="row">
+      <div class="col-12">
+        <h4 class="ui header" style="color: #fff;">New task</h4>
+        <div class="ui  action input"  style="width: 100%;">
+          <input type="text" v-model="item.from">
+           <button  @click="pickFile('from')" class="ui button">
+            FROM: Select file
+          </button>
+        </div>
+        <br><br>
+    
+        <div class="ui  action input" style="width: 100%;">
+          <input type="text" v-model="item.to">
+           <button  @click="pickFile('to')" class="ui button">
+              TO: Select folder
+          </button>
+        </div>
+        <br><br>
+    
+        <!-- <div style="text-align: right;">
+          <button @click="addToStack" class="ui primary button">Create</button>
+        </div> -->
+        <br>
+      </div>
+    </div> 
+
+    <label>
+      <h4 class="ui header" style="color: #fff;">
+        Tasks 
+      </h4>
+      <table v-if="stack.length !== 0" class="ui inverted celled table" >
+        <thead>
+          <tr>
+            <th>FROM</th>
+            <th>TO</th>
+            <th class="two wide">STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item of stack">
+            <td style="vertical-align: middle; word-break:break-all;">
+              <div style="font-size: 1.4rem">{{ item.filename }}</div>
+              <div style="font-weight: 600; font-size: 1rem; color: rgb(136, 136, 136);">
+                {{ item.from }}
+              </div>
+            </td>
+            <td style="vertical-align: middle; word-break:break-all;">
+              <div style="font-size: 1.4rem">{{ item.filename }}</div>
+              <div style="font-weight: 600; font-size: 1rem; color: rgb(136, 136, 136);">
+                {{ item.to }}
+              </div>
+            </td>
+            <td style="vertical-align: middle; "> 
+              <div v-if="item.progress != 100"> 
+                <div v-show="isTransfering && item.progress > 1" class="ui small active inline loader"></div>&nbsp;&nbsp;
+                <label>{{ item.progress }}%</label>
+              </div>
+              <div v-else style="color: #21ba45">
+                <i class="check icon"></i>
+                Done
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="full-width">
+          <tr>
+            <th colspan="3">
+              <div @click="startTransfering" :class="{disabled: isTransfering}" class="ui right floated small violet labeled icon button">
+                <i class="exchange icon"></i> Start transefering
+              </div>
+              <div @click="clearStack" class="ui right floated small labeled icon button" style="margin-right: 10px;">
+                <i class="trash icon"></i> Clear tasks 
+              </div>
+              <div v-show="isTransfering" @click="stopTransfering" class="ui right floated small labeled icon button" style="margin-right: 10px;">
+                <i class="ban icon"></i> Cancel
+              </div>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div v-else>
+        Tasks is empty
+      </div>
+    </div>
+
+  </div>
+</body>
+
+<script>
+  require('./core')
+</script>
+
+
+</html>

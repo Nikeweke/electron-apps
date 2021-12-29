@@ -1,0 +1,215 @@
+@require '../../css/includes/theme-default'
+.tabs
+  position relative
+  height 56px
+  overflow hidden
+  background main-dark
+.app-drag
+  -webkit-app-region drag
+  position absolute
+  left 0
+  top 0
+  height 15px
+  right 0
+  z-index 1
+.tabs-inner
+  position relative
+  z-index 2
+  padding 0 5px
+  margin-top 10px
+  display inline-block
+  height 63px
+  overflow-x scroll
+  overflow-y hidden
+  margin-left 42px
+  -webkit-app-region drag
+.tabs-wrapper
+  z-index 3
+.tab
+  -webkit-app-region no-drag
+  display inline-block
+  vertical-align middle
+  cursor pointer
+  position relative
+  min-width 100px
+  max-width 200px
+  line-height 36px
+  margin 5px 3px 5px 0
+  border-radius 3px
+  background main
+  text-align center
+  color text-dark
+  .tab-reload
+  .tab-close
+    display none
+  &.active
+    color text
+    background main-light
+  &:hover
+    .tab-close
+      display block
+  &.dragover-tab::after
+    position absolute
+    content ''
+    left -2px
+    top 0
+    width 1px
+    border 1px dashed text-dark
+    height 36px
+  &.error
+    .tab-reload
+      display inline-block
+      color text-light
+@keyframes blink
+  0%
+    opacity 0.3
+  50%
+    opacity 1
+  100%
+    opacity 0.3
+
+.tab-terminal-feed
+.tab-traffic
+.tab-status
+  position absolute
+  left 2px
+  top 2px
+  width 5px
+  height 5px
+  border-radius 5px
+  background-color text-dark
+  &.success
+    background-color success
+  &.error
+    background-color error
+  &.processing
+    background-color primary
+.is-transporting .tab-traffic
+  display block
+  animation blink 2s infinite
+.tab-traffic
+  display none
+  left 10px
+  width 5px
+  border-radius 0
+  background-color success
+.is-terminal-active .tab-terminal-feed
+  display block
+  animation blink 2s infinite
+.tab-terminal-feed
+  display none
+  left 20px
+  border-radius 0
+  color success
+  background none
+  font-size 8px
+  left 2px
+  top 24px
+.tab-close
+  position absolute
+  right 5px
+  cursor pointer
+  top 50%
+  margin-top -8px
+  background text-dark
+  border-radius 100%
+  color text
+  height 16px
+  width 16px
+  text-align center
+  line-height 16px
+  font-size 10px
+  &:hover
+    color text-light
+
+.tabs-add-btn
+  display inline-block
+  vertical-align middle
+  margin 0 3px
+  -webkit-app-region no-drag
+  color text
+  &:hover
+    color text-light
+.tabs-extra
+  position absolute
+  height 90px
+  top 0
+  right 0
+  line-height 90px
+  z-index 20
+  -webkit-app-region no-drag
+  background main-light
+  // .ant-btn
+  //   background #333
+  //   color #aaa
+  //   border-color: #333
+  //   &:hover
+  //     color #ccc
+  .tabs-dd-icon
+    color text
+    font-size 12px
+
+.window-controls
+  position absolute
+  right 0
+  -webkit-app-region no-drag
+  top 0
+  z-index 200
+  border-radius 0 0 3px 3px
+  padding 0
+  background main-light
+
+.window-control-box
+  display inline-block
+  padding 5px 10px
+  color text
+  -webkit-app-region no-drag
+  &:hover
+    color primary
+    cursor pointer
+    .icon-maximize
+      border-color primary
+.icon-maximize
+  width 10px
+  height 7px
+  border 1px solid text
+  cursor pointer
+  &.is-max
+    height 6px
+    position relative
+    &:before
+      position absolute
+      content ''
+      left -3px
+      top 3px
+      width 8px
+      height 4px
+      border 1px solid text
+      border-top none
+      border-right none
+
+.control-icon:hover
+  color text-light
+.tab-scroll-icon
+  color text-dark
+  &:hover
+    color text
+
+.add-menu-wrap
+  overflow-y scroll
+.window-controls
+  .window-control-minimize
+  .window-control-maximize
+    &:hover
+      background main-dark
+  .window-control-close:hover
+    background error
+
+.system-ui
+  .window-controls
+  .app-drag
+    display none
+  .tabs
+    height 45px
+  .tabs-inner
+    margin-top 0

@@ -1,0 +1,41 @@
+
+doctype html
+- var isDev = env !== 'production'
+html
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='x-ua-compatible' content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title #{siteName}
+    style.
+      #content-loading {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #141314 50% 50% no-repeat url("./images/electerm-watermark.png");
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    style(id='less-css').
+    link(rel='stylesheet', href='css/electerm.styles.css?' + version)
+    link(rel='stylesheet', href='css/basic.styles.css?' + version)
+    style(id='theme-css').
+  body
+    #container
+    #content-loading
+      .morph-shape.iblock.pd3
+        img.iblock.logo-filter(src='images/electerm.png', alt='', height=80)
+    script.
+      window.et = !{JSON.stringify(_global)}
+    script(src='../node_modules/lodash/lodash.min.js')
+    - if (isDev)
+      script(src='../node_modules/react/umd/react.development.js?' + version)
+      script(src='../node_modules/react-dom/umd/react-dom.development.js?' + version)
+    - else
+      script(src='./external/react.production.min.js?' + version)
+      script(src='./external/react-dom.production.min.js?' + version)
+    script(src='js/basic.js?' + version)

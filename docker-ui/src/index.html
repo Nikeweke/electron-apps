@@ -1,0 +1,155 @@
+<html>
+<head>
+  <link rel="stylesheet" href="../node_modules/semantic-ui-css/semantic.min.css">
+  <link rel="stylesheet" href="../assets/styles/styles.css">
+  <link rel="stylesheet" href="../assets/styles/bootstrap-grid.min.css">
+
+  <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+
+  <header id="titlebar">
+      <div id="drag-region">
+        <div id="window-title">
+          <span>Docker UI &nbsp;<label class="ui small blue label" id="version"></span> </span>
+        </div>
+
+        <div id="window-controls">
+          <div class="button" id="info-button">
+            <span>&#x3f;</span>
+          </div>
+          <div class="button" id="min-button">
+            <span>&#9866;</span>
+          </div>
+          <div class="button" id="max-button">
+            <span>&#10064;</span>
+          </div>
+          <div class="button" id="restore-button">
+            <span>&#10070;</span>
+          </div>
+          <div class="button" id="close-button">
+            <span>&#10005;</span>
+          </div>
+        </div>
+      </div>
+  </header>
+  
+  <div id="main">
+
+    <div class="ui form">
+
+    <div class="fields">
+      <div class="field">
+        <div class="ui small action input">
+          <input v-model="dockerHost" type="text" placeholder="Docker host...">
+          <button @click="initApp" class="ui button">Apply docker host</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+    <!-- <div class="ui small action input">
+      <input v-model="dockerHost" type="text" placeholder="Docker host...">
+      <button @click="initApp" class="ui button">Apply</button>
+    </div> -->
+
+    <br>
+
+    <div class="row">
+      <div class="col">
+        <button @click="dockerPs" class="ui inverted button violet">ps</button>
+        <button @click="dockerImages" class="ui inverted button primary">images</button>
+        <button @click="rmAllContainers" class="ui inverted button orange">rm all containers</button>
+        <button @click="rmAllImages" class="ui inverted button orange">rm all images</button>
+        <button @click="systemPrune" class="ui inverted button red">system prune -a</button>
+      </div>
+    </div>
+
+    <h4 @click="showConsole = !showConsole" style="cursor: pointer;">
+      <span v-if="!showConsole"> Show Console <i class="icon angle down"></i> </span>
+      <span v-else> Hide Console <i class="icon angle up"></i> </span> 
+      &nbsp;
+      <a v-if="dockerActive" style="color:rgb(124, 255, 92); float:right">docker is online</a>
+      <a v-else class="ui small red circular label">docker is offline </a>
+    </h3>
+    <div v-if="showConsole" id="console-area" style="background-color: black; padding: 15px; border-radius: 5px; height: 300px; overflow-y:scroll;"> 
+      <div v-for="item of output" v-html="item"></div>
+    </div>
+
+    <div class="ui inverted segment">
+      <div class="ui inverted secondary pointing menu">
+        <a :class="{'active': showContainers}" class="item" @click="showContainers = true">
+          Containers
+        </a>
+        <a :class="{'active': !showContainers}" class="item" @click="showContainers = false">
+          Images
+        </a>
+      </div>
+    </div>
+
+    <div  v-if="showContainers">
+      <table style="table-layout: fixed; width: 100%" v-if="containers.length !== 0" class="ui very compact  inverted table">
+        <thead>
+          <tr>
+            <th class="three wide">Image</th>
+            <th class="two wide">Command</th>
+            <th class="two wide">Created</th>
+            <th class="two wide">Status</th>
+            <th class="three wide">Ports</th>
+            <th class="two wide">Names</th>
+            <th class="two wide">Container ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="container of containers">
+         
+            <td style="word-wrap: break-word">{{ container.Image }}</td>
+            <td>{{ container.Command }}</td>
+            <td>{{ container.Created }}</td>
+            <td>{{ container.State }}</td>
+            <td style="word-wrap: break-word" v-html="portFormat(container.Ports)"></td>
+            <td style="word-wrap: break-word">{{ container.Names[0] }}</td>
+            <td style="word-wrap: break-word">
+              {{ container.Id }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div v-else>
+        No containers found
+      </div>
+    </div>
+
+    <div v-if="!showContainers">
+      <table style="table-layout: fixed; width: 100%" v-if="images.length !== 0" class="ui very compact inverted table">
+        <thead>
+          <tr>
+            <th>Repository</th>
+            <th class="two wide">Created</th>
+            <th class="two wide">Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="image of images">
+            <td>{{ image.RepoTags }}</td>
+            <td>{{ image.Created }}</td>
+            <td>{{ image.Size | bytesToSize }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div v-else>
+        No images found
+      </div>
+    </div> 
+
+  </div>
+    
+
+</body>
+
+<script>
+  require('./core')
+</script>
+
+</html>

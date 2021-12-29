@@ -1,0 +1,54 @@
+{
+  "name": "copy-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electromon .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "build": {
+    "appId": "com.copy-manager.app",
+    "productName": "Copy manager",
+    "files": [
+      "app.js",
+      "./src/**/*",
+      "./assets/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "./assets/256x256.png"
+    },
+    "nsis": {
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "perMachine": true
+    },
+    "linux": {
+      "target": "deb",
+      "maintainer": "Nikeweke",
+      "executableName": "Copy manager"
+    },
+    "directories": {
+      "buildResources": "./assets",
+      "output": "./dist"
+    }
+  },
+  "devDependencies": {
+    "electromon": "^1.0.10",
+    "electron": "^7.1.1",
+    "electron-builder": "^21.2.0"
+  },
+  "dependencies": {
+    "semantic-ui-css": "^2.4.1",
+    "get-folder-size": "^2.0.1",
+    "ncp": "^2.0.0",
+    "progress-stream": "^2.0.0"
+  }
+}

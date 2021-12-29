@@ -1,0 +1,38 @@
+{
+  "name": "electron-frameless-skeleton",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "hrm": "electromon .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "build": {
+    "appId": "com.electron-frameless-skeleton.app",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "perMachine": true
+    },
+    "directories": {
+      "buildResources": "./assets",
+      "output": "./dist"
+    }
+  },
+  "devDependencies": {
+    "electromon": "^1.0.10",
+    "electron": "^7.1.1",
+    "electron-builder": "^21.2.0"
+  },
+  "dependencies": {}
+}
